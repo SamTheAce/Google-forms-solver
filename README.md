@@ -22,10 +22,10 @@ Brute-forces google forms to get full possible score.
 * Multiple-choice questions.
 
 # Todo:
-[ ] Add support for dropdown questions.
-[ ] Add support for checkbox questions.
-[ ] Add support for linear scale questions.
-[ ] Add support for multiple choice grid questions.
-[ ] Add support for checkbox grid questions.
-[ ] Make the code look prettier.
-[ ] If the user needs to be logged in to view the form, prompt them to log in.
+* [ ] Add support for dropdown questions.
+* [ ] Add support for checkbox questions.
+* [ ] Add support for linear scale questions.
+* [ ] Add support for multiple choice grid questions.
+* [ ] Add support for checkbox grid questions.
+* [ ] Make the code look prettier.
+* [ ] If the user needs to be logged in to view the form, prompt them to log in.
