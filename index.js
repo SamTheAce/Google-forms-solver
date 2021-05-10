@@ -3,8 +3,8 @@
 const { JSDOM } = require('jsdom');
 const {Builder, By, Key, until, Browser} = require('selenium-webdriver');
 
-const formUrl  = "https://docs.google.com/forms/d/e/1FAIpQLSdkQSfN6RZ0PfT8U8ltfRd_OJwwrcTjGDrhdvqZgnMhTmw-tg/viewform?edit2=2_ABaOnudKAyR5L1i_dNrdCmPN96czpEs3wR0-UYm7PAHtOacv82A301A326TSQGlgpfzcSdc";
-const scoreUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdkQSfN6RZ0PfT8U8ltfRd_OJwwrcTjGDrhdvqZgnMhTmw-tg/viewscore?viewscore=AE0zAgDB_DgUuvlaKbpvj1NPs6AaiM3XkgdjtQSss3R2hAez5akAaG6vGUkmMCckLmub4z0";
+const formUrl  = "<YOUR FORM EDIT URL HERE>";
+const scoreUrl = "<YOUR VIEW SCORE URL HERE>";
 
 const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
 const charactersLength = characters.length;
