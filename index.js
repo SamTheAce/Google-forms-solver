@@ -1,87 +1,101 @@
 'use strict'
 
 const { JSDOM } = require('jsdom');
-const {Builder, By, Key, until, Browser} = require('selenium-webdriver');
+const { Builder, By, Key, until, Browser } = require('selenium-webdriver');
+const prompt = require('prompt-sync')();
 
-const formUrl  = "<YOUR FORM EDIT URL HERE>";
+const formUrl = "<YOUR FORM EDIT URL HERE>";
 const scoreUrl = "<YOUR VIEW SCORE URL HERE>";
 
-const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
 const charactersLength = characters.length;
 
 function genRandomString(length) {
     let result = [];
-    for ( var i = 0; i < length; i++ )
+    for (var i = 0; i < length; i++)
         result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
-   return result.join('');
+    return result.join('');
 }
 
-(async() => {
-    let driverForm = await new Builder().forBrowser('firefox').build();
-    let driverScore = await new Builder().forBrowser('firefox').build();
+(async () => {
+    let driverForm = await new Builder()
+        .forBrowser('firefox')
+        .build();
 
+    let driverScore = await new Builder()
+        .forBrowser('firefox')
+        .build();
+    
     // navigate to the form's score and resubmission form
     await driverForm.get(formUrl)
     await driverScore.get(scoreUrl)
-
+    
+    // Log-in checks.
+    if ((await driverScore.getCurrentUrl()).includes("accounts.google.com")) {
+        console.log("You must log-in to continue.");
+        console.log("Sign in on the firefox window, then press enter to continue.");
+        await prompt("");
+    }
+    
+    if ((await driverForm.getCurrentUrl()).includes("accounts.google.com")) {
+        console.log("You must log-in to continue.");
+        console.log("Sign in on the firefox window, then press enter to continue.");
+        await prompt("");
+    }
+    
     let complete = false;
-
-    while (!complete)
-    {
+    
+    while (!complete) {
         const formDom = new JSDOM(await driverScore.getPageSource())
         const scoreDom = new JSDOM(await driverScore.getPageSource())
         const questions = scoreDom.window.document.getElementsByClassName("freebirdFormviewerViewNumberedItemContainer");
-
+        
         complete = true;
-
-        for (let i = 0; i < questions.length ; i++) {
+        
+        for (let i = 0; i < questions.length; i++) {
             const eQuestionScore = questions[i];
-
+            
             const correct = eQuestionScore.getElementsByClassName("freebirdFormviewerViewItemsRadioCorrect").length > 0;
-            console.log(`Question ${i} is ${correct ? "correct" : "not correct"}`)
-
+            console.log(`Question ${i} is ${correct ? "correct" : "not correct"}`);
+            
             if (correct)
-                continue;    
+                continue;
             else {
                 // Sleep to not get flagged by re-captcha.
                 await driverForm.sleep(1000);
                 complete = false;
             }
-
+            
             const functionName = genRandomString(60);
             const id = genRandomString(60)
-
+            
             try {
-
-                await driverForm.executeScript(`function ${functionName}() { const selection = document.getElementsByClassName("freebirdFormviewerViewItemsRadiogroupRadioGroup")[${i}].getElementsByClassName("isChecked")[0]; const selectionIndex = Array.prototype.slice.call(selection.parentElement.parentElement.children).indexOf(selection.parentElement); const selectionPlusOne = selection.parentElement.parentElement.children[selectionIndex + 1]; selectionPlusOne.id = "${id}" } try{ ${functionName}(); } catch(e) {console.log(e)}`)
+                await driverForm.executeScript(`function ${functionName}() { const selection = document.getElementsByClassName("freebirdFormviewerViewItemsRadiogroupRadioGroup")[${i}].getElementsByClassName("isChecked")[0]; const selectionIndex = Array.prototype.slice.call(selection.parentElement.parentElement.children).indexOf(selection.parentElement); const selectionPlusOne = selection.parentElement.parentElement.children[selectionIndex + 1]; selectionPlusOne.id = "${id}" } try{ ${functionName}(); } catch(e) {console.log(e)}`) 
                 const element = await driverForm.findElement(By.id(id))
                 const elementRect = await element.getRect();
                 await driverForm.executeScript(`window.scrollTo(${elementRect.x}, ${elementRect.y})`);
                 await driverForm.actions().click(element).perform();
-
-            } catch (e)
-            {
-                console.log('There was an trying to select answer.' , e);
+            } catch (e) {
+                console.log('There was an trying to select answer.', e);
             }
-
+            
             try {
                 const submit = await driverForm.findElement(By.xpath('//span[@class="appsMaterialWizButtonPaperbuttonLabel quantumWizButtonPaperbuttonLabel exportLabel" and text()="Submit"]'))
                 const submitRect = await submit.getRect();
                 await driverForm.executeScript(`window.scrollTo(${submitRect.x}, ${submitRect.y})`);
                 await driverForm.actions().click(submit).perform();
-            } catch (e)
-            {
-                console.log('There was an trying to submit.' , e);
+            } catch (e) {
+                console.log('There was an trying to submit.', e);
             }
-
+            
             // Sleep before we reload so the submission actually goes through.
             await driverForm.sleep(500);
-
+            
             driverScore.get(scoreUrl);
             driverForm.get(formUrl);
         }
     }
-
+    
     driverForm.quit();
     driverScore.quit();
     

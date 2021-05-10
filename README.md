@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/65917727/117733423-8b5e1200-b1bf-11eb-
 
 # Usage
 * Fill out a form selecting only the top answer on the multi-choice boxes, the other ones you need to fill in the answer.
-* After submitting, copy the "View Score" link, and the "Edit Your Response link". Replace `formUrl` on line 3 with the url to edit. Replace `scoreUrl` on line 4 with the url to view the score.
+* After submitting, copy the "View Score" link, and the "Edit Your Response link". Replace `formUrl` on line 7 with the url to edit. Replace `scoreUrl` on line 8 with the url to view the score.
 * Start the program by executing `node .`
 * Wait for the program to finish brute-forcing your google forms.
 
