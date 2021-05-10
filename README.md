@@ -1,6 +1,8 @@
 # Google-forms-bruteforcer
 Brute-forces google forms to get full possible score.
 
+https://cdn.discordapp.com/attachments/705226361043681360/841441827667050549/fartforcer2.mp4
+
 # Things to know before use:
 * This only works for quizzes on Google Forms.
 * This will only work if the quiz you are trying to brute-force allows you to edit your response and view your score.
