@@ -1,4 +1,4 @@
-# Google-forms-bruteforcer
+# Google Forms Brute-Forcer (aka. FartForcer)
 Brute-forces google forms to get full possible score.
 
 https://user-images.githubusercontent.com/65917727/117733423-8b5e1200-b1bf-11eb-8e7c-620093afa297.mp4
@@ -30,4 +30,4 @@ https://user-images.githubusercontent.com/65917727/117733423-8b5e1200-b1bf-11eb-
 * [ ] Add support for multiple choice grid questions.
 * [ ] Add support for checkbox grid questions.
 * [ ] Make the code look prettier.
-* [ ] If the user needs to be logged in to view the form, prompt them to log in.
+* [x] ~~If the user needs to be logged in to view the form, prompt them to log in.~~
