@@ -178,7 +178,7 @@ function getQuestionType(el) {
                     const boxes = await driverForm.findElements(By.id(id));
 
                     //Uncheck the wrong ones.
-                    await boxes.forEach(async (e) => {
+                    boxes.forEach(async (e) => {
                         // Get the position of the element.
                         const rect = await e.getRect();
                         // Scroll to the element.
@@ -186,19 +186,6 @@ function getQuestionType(el) {
                         // Click the element.
                         await driverForm.actions().click(e).perform();
                     })
-                    
-                    // for (let i = 0; i < boxes.length; i++) {
-                    //     const element = boxes[i];
-
-                    //     // Get the rect of the element.
-                    //     const rect = await element.getRect();
-
-                    //     // Scroll to the element.
-                    //     await driverForm.executeScript(`window.scrollTo(${rect.x}, ${rect.y})`);
-                        
-                    //     // Click the element.
-                    //     await driverForm.actions().click(element).perform();
-                    // }
 
                     // Find the submit button, and its location.
                     const submitelem = await driverForm.findElement(By.xpath('//span[@class="appsMaterialWizButtonPaperbuttonLabel quantumWizButtonPaperbuttonLabel exportLabel" and text()="Submit"]'))
