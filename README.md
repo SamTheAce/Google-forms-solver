@@ -22,10 +22,11 @@ https://user-images.githubusercontent.com/65917727/117733423-8b5e1200-b1bf-11eb-
 
 # Supports:
 * Multiple-choice questions.
+* Checkbox questions.
 
 # Todo:
 * [ ] Add support for dropdown questions.
-* [ ] Add support for checkbox questions.
+* [x] Add support for checkbox questions.
 * [ ] Add support for linear scale questions.
 * [ ] Add support for multiple choice grid questions.
 * [ ] Add support for checkbox grid questions.
