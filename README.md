@@ -26,8 +26,8 @@ https://user-images.githubusercontent.com/65917727/117733423-8b5e1200-b1bf-11eb-
 
 # Todo:
 * [ ] Add support for dropdown questions.
-* [x] Add support for checkbox questions.
-* [ ] Add support for linear scale questions.
+* [x] ~~Add support for checkbox questions.~~
+* [ ] Add support for quizzes that have multiple sections.
 * [ ] Add support for multiple choice grid questions.
 * [ ] Add support for checkbox grid questions.
 * [ ] Make the code look prettier.
