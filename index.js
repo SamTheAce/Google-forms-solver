@@ -4,8 +4,8 @@ const { JSDOM } = require('jsdom');
 const { Builder, By, Key, until, Browser, WebDriver } = require('selenium-webdriver');
 const prompt = require('prompt-sync')();
 
-const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf6jM9rNyBbH6iJx3SdenSto8IV8nXjTLQy3Xjl5gR-okP8MQ/viewform?edit2=2_ABaOnueyu9cmVh6UqKzy2GncJyfWqtxF4GevijNMURxAJ9wDMD8bZZS57o-GdhiVxoDf5QQ";
-const scoreUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf6jM9rNyBbH6iJx3SdenSto8IV8nXjTLQy3Xjl5gR-okP8MQ/viewscore?viewscore=AE0zAgDzjhOEt72QUVJ7VpHb0vuLkfxIczOyNCIVYI0oHlJsdmnpj2T9qwN9_uz0tCzac5c";
+const formUrl = "";
+const scoreUrl = "";
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
 const charactersLength = characters.length;
